@@ -83,9 +83,11 @@ public class noahsmodM {
             int PickBedriteID = config.get(Configuration.CATEGORY_ITEM, "Bedrite Pick ID" , 501).getInt();
             int BedriteIngotID = config.get(Configuration.CATEGORY_ITEM, "Bedrite Ingot ID" , 505).getInt();
             boolean debugEnabled = config.get(Configuration.CATEGORY_GENERAL, "Debug", true).getBoolean(true);
+            boolean LagSafe = config.get(Configuration.CATEGORY_GENERAL, "LagMode", true).getBoolean(true);
             if (debugEnabled) {
             	System.out.println("[Noahsmod][Debug] Debug Option is working... Loads of Config Output!");
             }
+            
             config.save();
 
             if (debugEnabled) {

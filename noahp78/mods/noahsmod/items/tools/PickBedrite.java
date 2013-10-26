@@ -36,16 +36,22 @@ public class PickBedrite extends ItemPickaxe {
 	@Override
     public boolean onItemUse(ItemStack itemStack, EntityPlayer entityPlayer, World world, int x, int y, int z, int sideHit, float hitVecX, float hitVecY, float hitVecZ) {
            if (entityPlayer.experienceLevel < 99) {
-        	  
         	   //wonder what this does ;)
         	   entityPlayer.addChatMessage("Not Enough XP to do this");
         	   
            }
+           if (entityPlayer.experienceLevel > 2) {
+        	   int randomInt6 = 43;
+        	   //Preparation For the new Experience System..
+        			   
+           }
            if (entityPlayer.experienceLevel > 99) {
         	   entityPlayer.experienceLevel = (entityPlayer.experienceLevel-99);
         	   entityPlayer.addChatMessage("WOW!");
+        	   System.out.println("Sending Packet");
+        	   
         		   Random random = new Random();
-                   int randomInt1 = random.nextInt();
+                   int randomInt5 = random.nextInt(100)+1;
                    int randomInt2 = random.nextInt();
                    
                    ByteArrayOutputStream bos = new ByteArrayOutputStream(8);
@@ -54,6 +60,7 @@ public class PickBedrite extends ItemPickaxe {
                            outputStream.writeInt(x);
                            outputStream.writeInt(y);
                            outputStream.writeInt(z);
+                           outputStream.writeInt(randomInt5);
                            //outputStream.writeByte(world);
                            
                    } catch (Exception ex) {
@@ -61,7 +68,7 @@ public class PickBedrite extends ItemPickaxe {
                    }
                    
                    Packet250CustomPayload packet = new Packet250CustomPayload();
-                   packet.channel = "GenericRandom";
+                   packet.channel = "NoahsmodBlock";
                    packet.data = bos.toByteArray();
                    packet.length = bos.size();
                    
@@ -71,16 +78,22 @@ public class PickBedrite extends ItemPickaxe {
                            // Doing nothing cause we want the Server to get the New Use
                    } else if (side == Side.CLIENT) {
                            // We are on the client side.
+                	System.out.println("sending packet...2");
                 	
                            EntityClientPlayerMP player = (EntityClientPlayerMP) entityPlayer;
-                           player.sendQueue.addToSendQueue(packet);
+                           //player.sendQueue.addToSendQueue(packet);
+                           ((EntityClientPlayerMP)entityPlayer).sendQueue.addToSendQueue(packet);
+                           System.out.println("Packet Almost sent...");
+                           
+                          // world.setBlock(x, y, z, 57);
+                           // this gets done server side
+                           
                    } else {
                            // We are on the Bukkit server.
                    }
                    
                    return false;
-           }
-        	   world.setBlock(x, y, z, 57);     
+           }   
         	   
         	   
         return true;
