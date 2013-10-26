@@ -1,0 +1,20 @@
+[
+{
+  "modid": "noahsmod",
+  "name": "Noahs Mod",
+  "description": "Random Stuff FTW!",
+  "version": "Build 0.0.1",
+  "url": "...",
+  "updateUrl": "",
+  "authorList": [
+    "Noahp78"
+  ],
+  "credits": "By noahp78",
+  "logoFile": "",
+  "screenshots": [
+  ],
+  "parent":"",
+  "dependencies": [
+  ]
+}
+]
