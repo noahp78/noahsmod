@@ -10,6 +10,7 @@ public class LiquidFlowing extends BlockFlowing{
         this.blockHardness = 100.0F;
         this.setLightOpacity(3);
         this.setTextureName("noahsmod:movingtexture.png");
+        this.setLightValue(1F);
         
 		// TODO Auto-generated constructor stub
 	}

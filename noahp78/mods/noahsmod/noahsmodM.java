@@ -22,6 +22,10 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import noahp78.mods.noahsmod.*;
+import noahp78.mods.noahsmod.blocks.BedriteBlock;
+import noahp78.mods.noahsmod.WorldGen;
+
+
 
 import noahp78.mods.noahsmod.blocks.BedriteOre;
 import noahp78.mods.noahsmod.items.tools.PickBedrite;
@@ -59,11 +63,15 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 public class noahsmodM {
 	static EnumToolMaterial BEDRITE = EnumHelper.addToolMaterial("BEDRITE",3,2542,20.0F,3.0F,20);
 	public static Item BedriteIngot;
+	public static Block BedriteBlock;
+	
 	
 	public final static Block LiquidStill = new noahp78.mods.noahsmod.blocks.LiquidStill (503, Material.water);
 	public final static Block LiquidFlowing = new noahp78.mods.noahsmod.blocks.LiquidFlowing(504, Material.water);
 	public static net.minecraft.block.Block BedriteOre;
 	public static net.minecraft.item.ItemPickaxe PickBedrite;
+	public static WorldGen worldGen = new WorldGen();
+	
 	
         // The instance of your mod that Forge uses.
         @Instance(value = "NoahsMod")
@@ -82,6 +90,7 @@ public class noahsmodM {
             int BedriteOreID = config.get(Configuration.CATEGORY_BLOCK, "BedriteOreID" , 500).getInt();
             int PickBedriteID = config.get(Configuration.CATEGORY_ITEM, "Bedrite Pick ID" , 501).getInt();
             int BedriteIngotID = config.get(Configuration.CATEGORY_ITEM, "Bedrite Ingot ID" , 505).getInt();
+            int BedriteBlockID = config.get(Configuration.CATEGORY_BLOCK, "BedriteBlockID" , 506).getInt();
             boolean debugEnabled = config.get(Configuration.CATEGORY_GENERAL, "Debug", true).getBoolean(true);
             boolean LagSafe = config.get(Configuration.CATEGORY_GENERAL, "LagMode", true).getBoolean(true);
             if (debugEnabled) {
@@ -93,6 +102,13 @@ public class noahsmodM {
             if (debugEnabled) {
             	System.out.println("[Noahsmod][Debug]Registering BedriteOre");
             }
+        	BedriteBlock = new BedriteBlock(BedriteBlockID, Material.rock)
+            .setHardness(1.5F)
+            .setResistance(10.0F)
+            .setStepSound(Block.soundStoneFootstep)
+            .setUnlocalizedName("BedriteBlock")
+        	.setCreativeTab(CreativeTabs.tabBlock);
+        	
         	BedriteOre = new BedriteOre(BedriteOreID, Material.rock)
             .setHardness(1.5F)
             .setResistance(10.0F)
@@ -109,6 +125,7 @@ public class noahsmodM {
         	BedriteIngot = new noahp78.mods.noahsmod.items.BedriteIngot(BedriteIngotID)
         	.setCreativeTab(CreativeTabs.tabMaterials)
         	.setUnlocalizedName("BedriteIngot");
+
         	
             		
             		
@@ -117,22 +134,28 @@ public class noahsmodM {
         @EventHandler // used in 1.6.2
         //@Init       // used in 1.5.2
         public void load(FMLInitializationEvent event) {
+        	GameRegistry.registerWorldGenerator(worldGen);
         	GameRegistry.registerBlock(BedriteOre, "BedriteOre");
         	GameRegistry.registerBlock(LiquidFlowing, "LiquidFlowing");
         	GameRegistry.registerBlock(LiquidStill, "LiquidStill");
+        	GameRegistry.registerBlock(BedriteBlock, "BedriteBlock");
         	GameRegistry.registerItem(BedriteIngot, "BedriteIngot");
         	LanguageRegistry.addName(BedriteOre, "Bedrite Ore");
         	LanguageRegistry.addName(PickBedrite, "Bedrite Pick");
         	LanguageRegistry.addName(LiquidStill, "Chocolate");
         	LanguageRegistry.addName(BedriteIngot, "Bedrite Ingot");
+        	LanguageRegistry.addName(BedriteBlock, "Bedrite Block");
         	ItemStack BedriteOre2 = new ItemStack (BedriteOre);
         	ItemStack BedriteIngot2 = new ItemStack (BedriteIngot);
+        	ItemStack Sticks = new ItemStack (Item.stick);
+        	ItemStack BedriteBLock2 = new ItemStack (BedriteBlock);
         	
         	
-        	
-        			
         	GameRegistry.addSmelting(BedriteOre.blockID, BedriteIngot2, 1F);
-        	
+        	GameRegistry.addRecipe(new ItemStack(PickBedrite), "yyy", " x ", " x ",
+        	        'x', Sticks, 'y', BedriteIngot);
+        	GameRegistry.addRecipe(new ItemStack (BedriteBlock), "iii", "iii", "iii", 'i', BedriteIngot);
+        	GameRegistry.addShapelessRecipe(new ItemStack(BedriteIngot, 9), new ItemStack(BedriteBlock));
         	
         	
                 

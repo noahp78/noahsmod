@@ -29,7 +29,7 @@ public class PickBedrite extends ItemPickaxe {
 
 	public PickBedrite(int par1, EnumToolMaterial par2EnumToolMaterial) {
 		super(par1, par2EnumToolMaterial);
-		// TODO Auto-generated constructor stub
+		
 		this.setTextureName("noahsmod:BedritePick");
 		
 	}
@@ -47,7 +47,7 @@ public class PickBedrite extends ItemPickaxe {
            }
            if (entityPlayer.experienceLevel > 99) {
         	   entityPlayer.experienceLevel = (entityPlayer.experienceLevel-99);
-        	   entityPlayer.addChatMessage("WOW!");
+        	//   entityPlayer.addChatMessage("WOW!");
         	   System.out.println("Sending Packet");
         	   
         		   Random random = new Random();

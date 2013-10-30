@@ -10,6 +10,8 @@ public class LiquidStill extends BlockStationary {
 		this.disableStats();
         this.blockHardness = 100.0F;
         this.setLightOpacity(3);
+        this.setLightValue(1F);
+        
 		// TODO Auto-generated constructor stub
 	}
 
