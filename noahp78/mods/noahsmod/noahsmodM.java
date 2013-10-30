@@ -56,7 +56,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
  * 
  */
 
-@Mod(modid="noahsmod", name="NoahsMod", version="0.0.1")
+@Mod(modid="noahsmod", name="NoahsMod", version="Build #3")
 @NetworkMod(clientSideRequired=true, serverSideRequired=false, channels={"NoahsmodBlock"}, packetHandler= noahp78.mods.noahsmod.PacketHandler.class)
 		
 
@@ -180,5 +180,6 @@ public class noahsmodM {
         public void serverLoad(FMLServerStartingEvent event)
         {
           event.registerServerCommand(new SampleCommand());
+          System.out.println("[Noahs mod] Server side Starting")
         }
 }
