@@ -12,7 +12,8 @@
 		<property name="lib.dir"              value="${build.dir}/lib"/>
 	
 		<property name="mcp.dir"              value="${build.dir}/mcp"/>
-		<property name="forge.dir"            value="${mcp.dir}/forge"/>
+		<property name="forge.dir"            value="${build.dir]/forge"/>
+		<property name="mcp.dir"              value="${forge.dir}/mcp"/>
 	
 		<property name="clientsrc.dir"        value="${mcp.dir}/src/minecraft"/>
 		<property name="commonsrc.dir"        value="${clientsrc.dir}/noahp78/mods/"/>
@@ -34,23 +35,23 @@
 			<echo message="Download started"/>
 			<mkdir dir="${download.dir}"/>
 
-			<get src="http://mcp.ocean-labs.de/files/mcp${mcp.version}.zip" dest="${download.dir}" usetimestamp="True"/>
-			<get src="http://files.minecraftforge.net/minecraftforge/minecraftforge-src-${mc.version}-${forge.version}.zip" dest="${download.dir}" usetimestamp="True"/>
+	<!--	<get src="http://mcp.ocean-labs.de/files/mcp${mcp.version}.zip" dest="${download.dir}" usetimestamp="True"/>	-->
+			<get src="http://files.minecraftforge.net/minecraftforge/minecraftforge-src-1.6.4-9.11.1.953.zip" dest="${download.dir}" usetimestamp="True"/>
 
 			<echo message="Download finished"/>
 		</target>
 
 		<target name="unpack">
 			<echo message="Unpacking started"/>
-			<unzip dest="${mcp.dir}" failOnEmptyArchive="true">
+		<!--	<unzip dest="${mcp.dir}" failOnEmptyArchive="true">
 				<fileset dir="${download.dir}">
 					<include name="mcp${mcp.version}.zip"/>
-				</fileset>
+				</fileset> -->
 			</unzip>
 
 			<unzip dest="${mcp.dir}" failOnEmptyArchive="true">
 				<fileset dir="${download.dir}">
-					<include name="minecraftforge-src-${mc.version}-${forge.version}.zip"/>
+					<include name="minecraftforge-src-1.6.4-9.11.1.953.zip"/>
 				</fileset>
 			</unzip>
 			<echo message="Unpacking finished"/>
