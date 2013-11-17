@@ -45,8 +45,8 @@
 		<!--	<unzip dest="${mcp.dir}" failOnEmptyArchive="true">
 				<fileset dir="${download.dir}">
 					<include name="mcp${mcp.version}.zip"/>
-				</fileset> -->
-			</unzip>
+				</fileset> 
+			</unzip> -->
 
 			<unzip dest="${mcp.dir}" failOnEmptyArchive="true">
 				<fileset dir="${download.dir}">
