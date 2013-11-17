@@ -58,7 +58,7 @@
 
 		<target name="fix-perms">
 			<echo message="Started fixing the permissions on scripts"/>
-			<chmod file="${forge.dir}/install.sh" perm="+x"/>
+			<chmod file="${forge.dir}/install.sh" perm="+777"/>
 
 			<!-- if your building on OSX these 2 should be executable 
 			<chmod file="${mcp.dir}/runtime/bin/astyle-osx" perm="+x"/>
