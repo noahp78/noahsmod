@@ -58,10 +58,6 @@
 
 		<target name="fix-perms">
 			<echo message="Started fixing the permissions on scripts"/>
-			<chmod file="${mcp.dir}/updatemd5.sh" perm="+x"/>
-			<chmod file="${mcp.dir}/updatemcp.sh" perm="+x"/>
-			<chmod file="${mcp.dir}/recompile.sh" perm="+x"/>
-			<chmod file="${mcp.dir}/reobfuscate.sh" perm="+x"/>
 			<chmod file="${forge.dir}/install.sh" perm="+x"/>
 
 			<!-- if your building on OSX these 2 should be executable -->
@@ -81,7 +77,14 @@
 			</exec>
 			<echo message="Installed Forge"/>
 		</target>
-
+		<target name="FixPerm2">
+			<echo message="fixing MCP permissions"/>
+			<echo message="Started fixing the permissions on scripts"/>
+			<chmod file="${mcp.dir}/updatemd5.sh" perm="+x"/>
+			<chmod file="${mcp.dir}/updatemcp.sh" perm="+x"/>
+			<chmod file="${mcp.dir}/recompile.sh" perm="+x"/>
+			<chmod file="${mcp.dir}/reobfuscate.sh" perm="+x"/>
+		</target>
 		<target name="regen-md5">
 			<echo message="Regenerating MD5s"/>
 			<exec dir="${mcp.dir}" executable="cmd" osfamily="windows" failonerror="true">
