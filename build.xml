@@ -1,0 +1,146 @@
+<project name="Noahs Mod" basedir="." default="main">
+	<property environment="env"/>
+
+		<property name="build.dir"            value="build"/>
+		<property name="src.dir"              value="noahsmod/src"/>
+
+		<property name="download.dir"         value="download"/>
+		<property name="files.minecraft.dir"  value="jars"/>
+	
+		<property name="classes.dir"          value="${build.dir}/classes"/>
+		<property name="jar.dir"              value="${build.dir}/dist"/>
+		<property name="lib.dir"              value="${build.dir}/lib"/>
+	
+		<property name="mcp.dir"              value="${build.dir}/mcp"/>
+		<property name="forge.dir"            value="${mcp.dir}/forge"/>
+	
+		<property name="clientsrc.dir"        value="${mcp.dir}/src/minecraft"/>
+		<property name="commonsrc.dir"        value="${clientsrc.dir}/noahp78/mods/"/>
+
+		<property name="mcp.version"          value="811"/>
+		<property name="mc.version"           value="1.6.4"/>
+		<property name="forge.version"        value="9.11.1.953"/>
+		<property name="vp.version"           value="0"/>
+
+		<target name="init-msg">
+			<echo message="Starting build for Noahs Mod ${vp.version} for MC ${mc.version}"/>
+		</target>
+
+		<target name="clean">
+			<delete dir="${build.dir}"/>
+		</target>
+
+		<target name="download">
+			<echo message="Download started"/>
+			<mkdir dir="${download.dir}"/>
+
+			<get src="http://mcp.ocean-labs.de/files/mcp${mcp.version}.zip" dest="${download.dir}" usetimestamp="True"/>
+			<get src="http://files.minecraftforge.net/minecraftforge/minecraftforge-src-${mc.version}-${forge.version}.zip" dest="${download.dir}" usetimestamp="True"/>
+
+			<echo message="Download finished"/>
+		</target>
+
+		<target name="unpack">
+			<echo message="Unpacking started"/>
+			<unzip dest="${mcp.dir}" failOnEmptyArchive="true">
+				<fileset dir="${download.dir}">
+					<include name="mcp${mcp.version}.zip"/>
+				</fileset>
+			</unzip>
+
+			<unzip dest="${mcp.dir}" failOnEmptyArchive="true">
+				<fileset dir="${download.dir}">
+					<include name="minecraftforge-src-${mc.version}-${forge.version}.zip"/>
+				</fileset>
+			</unzip>
+			<echo message="Unpacking finished"/>
+		</target>
+
+		<target name="fix-perms">
+			<echo message="Started fixing the permissions on scripts"/>
+			<chmod file="${mcp.dir}/updatemd5.sh" perm="+x"/>
+			<chmod file="${mcp.dir}/updatemcp.sh" perm="+x"/>
+			<chmod file="${mcp.dir}/recompile.sh" perm="+x"/>
+			<chmod file="${mcp.dir}/reobfuscate.sh" perm="+x"/>
+			<chmod file="${forge.dir}/install.sh" perm="+x"/>
+
+			<!-- if your building on OSX these 2 should be executable -->
+			<chmod file="${mcp.dir}/runtime/bin/astyle-osx" perm="+x"/>
+			<chmod file="${mcp.dir}/runtime/bin/jad-osx" perm="+x"/>
+			<echo message="Finished fixing the permissions on scripts"/>
+		</target>
+
+		<target name="install-forge">
+			<echo message="Installing Forge"/>
+			<exec dir="${forge.dir}" executable="cmd" osfamily="windows" failonerror="true">
+				<arg line="/c install.cmd"/>
+			</exec>
+
+			<exec dir="${forge.dir}" executable="sh" osfamily="unix" failonerror="true">
+				<arg value="install.sh"/>
+			</exec>
+			<echo message="Installed Forge"/>
+		</target>
+
+		<target name="regen-md5">
+			<echo message="Regenerating MD5s"/>
+			<exec dir="${mcp.dir}" executable="cmd" osfamily="windows" failonerror="true">
+				<arg line="/c updatemd5.bat -f --client"/>
+			</exec>
+
+			<exec dir="${mcp.dir}" executable="sh" osfamily="unix" failonerror="true">
+				<arg line="updatemd5.sh -f --client"/>
+			</exec>
+
+			<echo message="Regenerated MD5s"/>
+		</target>
+		
+		<target name="copySRC" >
+		<!-- Delete LP source in build space -->
+		<delete dir="${commonsrc.dir}/"/>
+
+		<!-- Copy LP source -->
+		<copy todir="${commonsrc.dir}">
+			<fileset dir="${src.dir}"/>
+		</copy>
+		</target>
+		
+		<target name="setup" depends="init-msg, clean, download, unpack, fix-perms, install-forge, regen-md5">
+			<echo message="Finished setting up the environment"/>
+		</target>
+		
+		<target name="compile" depends="copySRC">
+			<echo message="Compiling version ${vp.version.full}"/>
+
+			<!-- Recompile -->
+			<exec dir="${mcp.dir}" executable="cmd" osfamily="windows" failonerror="true">
+				<arg line="/c recompile.bat --client"/>
+			</exec>
+
+			<exec dir="${mcp.dir}" executable="sh" osfamily="unix" failonerror="true">
+				<arg value="recompile.sh"/>
+			</exec>
+
+			<!-- Reobf -->
+			<exec dir="${mcp.dir}" executable="cmd" osfamily="windows" failonerror="true">
+				<arg line="/c reobfuscate_srg.bat --client"/>
+			</exec>
+
+			<exec dir="${mcp.dir}" executable="sh" osfamily="unix" failonerror="true">
+				<arg value="reobfuscate_srg.sh"/>
+			</exec>
+
+			<!-- Copy LP classes -->
+			<copy todir="${classes.dir}/client">
+				<fileset dir="${mcp.dir}/reobf/minecraft"/>
+			</copy>
+
+			<echo message="Compiling finished"/>
+
+		</target>
+
+		<target name="test" depends="setup, compile">
+			<echo message="Finshed testing compilation for Travis"/>
+		</target>
+
+</project>
