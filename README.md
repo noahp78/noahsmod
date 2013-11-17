@@ -5,6 +5,9 @@ Noahs Mod Repo
 
 We aren't dead, just having problems with Github for windows and a broken GIT Repo.
 
+Build Status:
+Master: [![Build Status](https://travis-ci.org/noahp78/noahsmod.png?branch=master)](https://travis-ci.org/noahp78/noahsmod)
+Development (noahnew) [![Build Status](https://travis-ci.org/noahp78/noahsmod.png?branch=noahnew)](https://travis-ci.org/noahp78/noahsmod)
 
 
 license
