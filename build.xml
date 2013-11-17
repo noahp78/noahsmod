@@ -48,7 +48,7 @@
 				</fileset> 
 			</unzip> -->
 
-			<unzip dest="${mcp.dir}" failOnEmptyArchive="true">
+			<unzip dest="${forge.dir}" failOnEmptyArchive="true">
 				<fileset dir="${download.dir}">
 					<include name="minecraftforge-src-1.6.4-9.11.1.953.zip"/>
 				</fileset>
