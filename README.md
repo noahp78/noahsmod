@@ -3,6 +3,9 @@ noahsmod
 
 Noahs Mod Repo
 
+We aren't dead, just having problems with Github for windows and a broken GIT Repo.
+
+
 
 license
 ========
