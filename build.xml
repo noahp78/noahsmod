@@ -35,7 +35,6 @@
 			<echo message="Download started"/>
 			<mkdir dir="${download.dir}"/>
 
-	<!--	<get src="http://mcp.ocean-labs.de/files/mcp${mcp.version}.zip" dest="${download.dir}" usetimestamp="True"/>	-->
 			<get src="http://files.minecraftforge.net/minecraftforge/minecraftforge-src-1.6.4-9.11.1.953.zip" dest="${download.dir}" usetimestamp="True"/>
 
 			<echo message="Download finished"/>
