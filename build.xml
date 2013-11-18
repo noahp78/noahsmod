@@ -140,10 +140,10 @@
 				<fileset dir="${mcp.dir}/reobf/minecraft"/>
 				
 			</copy>
-			<copy todir="${classes.dir}/client/assets">
+		<!--	<copy todir="${classes.dir}/client/assets">
 			<mkdir dir="${classes.dir}/client/assets"/>
 				<fileset dir="${src.dir}/assets"/>
-			</copy>
+			</copy> -->
 			<echo message="Compiling finished"/>
 			<echo message="creating Jar file"/>
 
