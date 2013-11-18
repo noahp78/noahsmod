@@ -6,3 +6,9 @@ jdk:
 before_script:
   - sudo apt-get install astyle
 script: ant test
+notifications:
+  irc: "irc.espner.net#noahsmod"
+    template:
+      - "Travis Auto Build Complete!"
+      - "%{repository} (%{commit}) : %{message} %{foo} "
+      - "Build details: %{build_url}"
