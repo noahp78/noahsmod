@@ -11,7 +11,6 @@
 		<property name="jar.dir"              value="${build.dir}/dist"/>
 		<property name="lib.dir"              value="${build.dir}/lib"/>
 	
-		<property name="mcp.dir"              value="${build.dir}/mcp"/>
 		<property name="forge.dir"            value="${build.dir}/forge"/>
 		<property name="mcp.dir"              value="${forge.dir}/mcp"/>
 	
