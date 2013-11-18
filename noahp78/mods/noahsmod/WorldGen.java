@@ -33,7 +33,7 @@ public class WorldGen implements IWorldGenerator{
         	int firstBlockYCoord = rand.nextInt(64);
         	int firstBlockZCoord = chunkZ + rand.nextInt(16);
         	
-        	(new WorldGenMinable(noahp78.mods.noahsmod.noahsmodM.BedriteOre.blockID, 13).generate(world, rand, firstBlockXCoord, firstBlockYCoord, firstBlockZCoord));
+        	new WorldGenMinable(noahp78.mods.noahsmod.noahsmodM.BedriteOre.blockID, 13).generate(world, rand, firstBlockXCoord, firstBlockYCoord, firstBlockZCoord);
         }
 	}
 
