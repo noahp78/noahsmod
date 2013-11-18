@@ -6,3 +6,6 @@ jdk:
 before_script:
   - sudo apt-get install astyle
 script: ant test
+deploy:
+  provider: heroku
+  secure: "RwVBrIULUhhnOxJGqpwbz/aa/5vWFbUIwn6VeDdqH76dzxn/IcdBFgBnuVsJKGkHOn1gaG3QykobFw2vYDO6CZzpTvI819hZ5VATS35hVusmfJ00sAe7MWhl5jmk86d8K1VwE9H4pbhzjogml8k9Nt5617uAOgr9JuvJr1fyoHc="
