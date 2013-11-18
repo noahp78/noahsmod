@@ -138,8 +138,10 @@
 			<!-- Copy LP classes -->
 			<copy todir="${classes.dir}/client">
 				<fileset dir="${mcp.dir}/reobf/minecraft"/>
+				
 			</copy>
 			<copy todir="${classes.dir}/client/assets">
+			<mkdir dir="${classes.dir}/client/assets"/>
 				<fileset dir="${src.dir}/assets"/>
 			</copy>
 			<echo message="Compiling finished"/>
