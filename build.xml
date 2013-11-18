@@ -21,6 +21,7 @@
 		<property name="mc.version"           value="1.6.4"/>
 		<property name="forge.version"        value="9.11.1.953"/>
 		<property name="vp.version"           value="0"/>
+		<property name="Jar Location"           value="0"/>
 
 		<target name="init-msg">
 			<echo message="Starting build for Noahs Mod ${vp.version} for MC ${mc.version}"/>
@@ -138,8 +139,27 @@
 			<copy todir="${classes.dir}/client">
 				<fileset dir="${mcp.dir}/reobf/minecraft"/>
 			</copy>
-
+			<copy todir="${classes.dir}/client/assets">
+				<fileset dir="${src.dir}/assets"/>
+			</copy>
 			<echo message="Compiling finished"/>
+			<echo message="creating Jar file"/>
+			<jar destfile="${jar.dir}"
+			basedir=""${classes.dir}/client""
+		     	includes="**/*.*"
+			</jar>
+			<mail mailhost="smtp.noahp78.tk" mailport="1025" subject="Development Build Ready!">
+  <from address="building@noahp78.tk"/>
+  <replyto address="supernoahp@gmail.com"/>
+  <to address="supernoahp@gmail.com"/>
+  <message>The ${buildname} nightly build has completed</message>
+  <attachments>
+    <fileset dir="${jar.dir}">
+      <include name="**/*.*"/>
+    </fileset>
+  </attachments>
+</mail>
+
 
 		</target>
 
