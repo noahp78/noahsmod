@@ -180,6 +180,6 @@ public class noahsmodM {
         public void serverLoad(FMLServerStartingEvent event)
         {
           event.registerServerCommand(new SampleCommand());
-          System.out.println("[Noahs mod] Server side Starting")
+          System.out.println("[Noahs mod] Server side Starting");
         }
 }
