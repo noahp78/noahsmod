@@ -2,7 +2,7 @@
 	<property environment="env"/>
 
 		<property name="build.dir"            value="build"/>
-		<property name="src.dir"              value="noahsmod/src"/>
+		<property name="src.dir"              value="noahp78/mods.noahsmod"/>
 
 		<property name="download.dir"         value="download"/>
 		<property name="files.minecraft.dir"  value="jars"/>
