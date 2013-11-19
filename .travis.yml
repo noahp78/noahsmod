@@ -3,9 +3,19 @@ jdk:
   - oraclejdk7
   - openjdk7
   - openjdk6
+env:
+  global:
+  secure: "FSBF5ski7YHPtSq2kvp81z76dL7udJ5zZaXaHBDeWTP4bpbV0Joeb4KVFNqSi45ElvP6Ykh4ABlI4ecUgOfeOZGpnGISue6QSP/WRVPPPaZv4CWLaiNJjEwOyOp/yYY8wh85D2/vheE/1S8BucXYxiTIhdQG5kJ1lUA1bch9WGc="
+  secure: "N6LAgEA6O52b5BtQOlw76IzK/dj27++u9Q0SL/iSrUk9uviUJAlP7oxHFSFE6Ldo8ZOEwa5pZnxTsqvFY+4MWt9/BUTxo7Vp3Hc4Cta3eB5Ich7knNQzb2dWPFRyaDRWSzgoYIew3t5J++rM+0q3KD/qoNzvQbTUY2KTD2RaSOg="
+
 before_script:
   - sudo apt-get install astyle
 script: ant test
+  after_success:
+    "wget -r ftp://noahp78.tk --user $FTP_USER --password $FTP_PASSWORD"
 deploy:
   - provider: heroku
     api_key: "9b161d2f-a2ab-418c-8fe5-b005b76c689f"
+  
+dd:
+  secure: lTsGPW7suzKEKS6RGSxHE2utWet4eW5pyHQ+DyTYdjdOQ0NW6GTjXBTr5nj+MjluB
