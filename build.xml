@@ -150,7 +150,7 @@
 			  <zip destfile="${jar.dir}/NoahsMod Nightly.zip"
        basedir="${classes.dir}/client"
   />
-			<mail mailhost="smtp.noahp78.tk" mailport="1025" subject="Development Build Ready!">
+		<!--	<mail mailhost="smtp.noahp78.tk" mailport="1025" subject="Development Build Ready!">
   <from address="building@noahp78.tk"/>
   <replyto address="supernoahp@gmail.com"/>
   <to address="supernoahp@gmail.com"/>
@@ -160,7 +160,7 @@
       <include name="**/*.*"/>
     </fileset>
   </attachments>
-</mail>
+</mail> -->
 
 
 		</target>
