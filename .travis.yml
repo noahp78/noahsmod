@@ -11,11 +11,8 @@ env:
 before_script:
   - sudo apt-get install astyle
 script: ant test
-  after_success:
-    "wget -r ftp://noahp78.tk --user $FTP_USER --password $FTP_PASSWORD"
+
 deploy:
   - provider: heroku
     api_key: "9b161d2f-a2ab-418c-8fe5-b005b76c689f"
-  
-dd:
-  secure: lTsGPW7suzKEKS6RGSxHE2utWet4eW5pyHQ+DyTYdjdOQ0NW6GTjXBTr5nj+MjluB
+
